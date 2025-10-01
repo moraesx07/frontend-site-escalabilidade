@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+<meta charset="utf-8" />
+<title>Frontend - Vercel</title>
+</head>
+<body>
+<h1>Integração: Frontend no Vercel + Backend no Render</h1>
+<button id="btn">Carregar mensagem</button>
+<pre id="saida"></pre>
+<script>
+const BACKEND = "https://https://backend-api-escabilidade-2b6p.onrender.com"; // troque aqui
+document.getElementById("btn").addEventListener("click", async () => {
+const saida = document.getElementById("saida");
+saida.textContent = "Carregando...";
+try {
+const res = await fetch(BACKEND + "/");
+const json = await res.json();
+saida.textContent = JSON.stringify(json, null, 2);
+} catch (err) {
+saida.textContent = "Erro: " + err.message;
+}
+});
+</script>
+</body>
+</html>
